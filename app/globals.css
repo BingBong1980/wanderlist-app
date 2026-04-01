@@ -1,0 +1,212 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Leaflet map styles */
+@import 'leaflet/dist/leaflet.css';
+
+:root {
+  --sky-gradient: linear-gradient(180deg, #87CEEB 0%, #B8DCF0 40%, #F5F0E8 100%);
+  --orange: #F97316;
+  --sky-blue: #5BA4CF;
+  --beige: #F5F0E8;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--beige);
+  min-height: 100vh;
+  max-width: 430px;
+  margin: 0 auto;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Sky gradient background for header areas */
+.sky-bg {
+  background: var(--sky-gradient);
+}
+
+/* Cloud effect */
+.cloud-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.cloud {
+  position: absolute;
+  background: white;
+  border-radius: 50px;
+  opacity: 0.6;
+  animation: float 6s ease-in-out infinite;
+}
+
+.cloud::before,
+.cloud::after {
+  content: '';
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+}
+
+.cloud-1 {
+  width: 60px;
+  height: 20px;
+  top: 20px;
+  left: 10px;
+  animation-delay: 0s;
+}
+
+.cloud-1::before {
+  width: 30px;
+  height: 30px;
+  top: -15px;
+  left: 10px;
+}
+
+.cloud-1::after {
+  width: 20px;
+  height: 20px;
+  top: -10px;
+  left: 25px;
+}
+
+.cloud-2 {
+  width: 80px;
+  height: 25px;
+  top: 15px;
+  right: 15px;
+  animation-delay: 2s;
+}
+
+.cloud-2::before {
+  width: 35px;
+  height: 35px;
+  top: -18px;
+  left: 15px;
+}
+
+.cloud-2::after {
+  width: 25px;
+  height: 25px;
+  top: -12px;
+  left: 35px;
+}
+
+.cloud-3 {
+  width: 50px;
+  height: 18px;
+  top: 50px;
+  left: 40%;
+  animation-delay: 4s;
+}
+
+.cloud-3::before {
+  width: 25px;
+  height: 25px;
+  top: -12px;
+  left: 8px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Map container */
+.map-container {
+  width: 100%;
+  height: calc(100vh - 120px);
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+/* Custom map pin */
+.custom-pin {
+  background: none;
+  border: none;
+}
+
+/* Bottom nav */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+  z-index: 1000;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Card styles */
+.spot-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.spot-card:active {
+  transform: scale(0.98);
+}
+
+/* Category pill */
+.category-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+}
+
+/* Scrollbar hide */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Popup overlay */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 2000;
+  display: flex;
+  align-items: flex-end;
+  animation: fadeIn 0.2s ease;
+}
+
+.popup-sheet {
+  background: white;
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 20px;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* PWA safe areas */
+.safe-top { padding-top: env(safe-area-inset-top); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
