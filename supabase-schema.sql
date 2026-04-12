@@ -68,9 +68,9 @@ ALTER TABLE submissions ENABLE ROW LEVEL SECURITY;
 
 -- Spots: anyone can read, only admins can write
 CREATE POLICY "Anyone can read spots" ON spots FOR SELECT USING (true);
-CREATE POLICY "Only admins can insert spots" ON spots FOR INSERT WITH CHECK (auth.jwt() ->> 'email' = 'your-admin-email@example.com');
-CREATE POLICY "Only admins can update spots" ON spots FOR UPDATE USING (auth.jwt() ->> 'email' = 'your-admin-email@example.com');
-CREATE POLICY "Only admins can delete spots" ON spots FOR DELETE USING (auth.jwt() ->> 'email' = 'your-admin-email@example.com');
+CREATE POLICY "Only admins can insert spots" ON spots FOR INSERT WITH CHECK (auth.jwt() ->> 'email' = 'Sjgloss74@yahoo.com');
+CREATE POLICY "Only admins can update spots" ON spots FOR UPDATE USING (auth.jwt() ->> 'email' = 'Sjgloss74@yahoo.com');
+CREATE POLICY "Only admins can delete spots" ON spots FOR DELETE USING (auth.jwt() ->> 'email' = 'Sjgloss74@yahoo.com');
 
 -- User lists: users can only see/edit their own lists
 CREATE POLICY "Users can read own lists" ON user_lists FOR SELECT USING (auth.uid() = user_id);
@@ -95,5 +95,5 @@ CREATE POLICY "Users can remove hearts" ON hearts FOR DELETE USING (auth.uid() =
 
 -- Submissions: authenticated users can submit, admins can manage
 CREATE POLICY "Authenticated users can submit" ON submissions FOR INSERT WITH CHECK (auth.uid() IS NOT NULL);
-CREATE POLICY "Admins can read submissions" ON submissions FOR SELECT USING (auth.jwt() ->> 'email' = 'your-admin-email@example.com');
-CREATE POLICY "Admins can update submissions" ON submissions FOR UPDATE USING (auth.jwt() ->> 'email' = 'your-admin-email@example.com');
+CREATE POLICY "Admins can read submissions" ON submissions FOR SELECT USING (auth.jwt() ->> 'email' = 'Sjgloss74@yahoo.com');
+CREATE POLICY "Admins can update submissions" ON submissions FOR UPDATE USING (auth.jwt() ->> 'email' = 'Sjgloss74@yahoo.com');
